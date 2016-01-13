@@ -17,7 +17,7 @@
         
         <div id="Home" ng-show= "Mode == 'home' || Mode == 'outbound'">          
             <div class="form-group" >
-                <select ng-options="ticket.TruckID for ticket in OpenTickets" ng-model="selectedOpenTicket"
+                <select ng-options="ticket.Truck.Name for ticket in OpenTickets" ng-model="selectedOpenTicket"
                     ng-change="LoadTicket()">
                     <option value="" disabled>Select Open Ticket</option>
                 </select>
@@ -30,16 +30,16 @@
         <div id="Outbound" ng-show="Mode == 'outbound'">
             <hr>
             <div class="form-group">
-                <label>Truck ID:</label><label>{{Ticket.TruckID}}</label>
+                <label>Truck ID:</label><label>{{Ticket.Truck.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Commodity:</label><label>{{Ticket.Commodity}}</label>
+                <label>Commodity:</label><label>{{Ticket.Commodity.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Field:</label><label>{{Ticket.Field}}</label>
+                <label>Field:</label><label>{{Ticket.Field.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Farm:</label><label>{{Ticket.Farm}}</label>
+                <label>Farm:</label><label>{{Ticket.Farm.Name}}</label>
             </div>
             <div class="form-group">
                 <label>Moisture:</label><input type="text" name="input" ng-model="Ticket.Moisture">
@@ -54,6 +54,12 @@
         
         <div id="NewTicket" ng-show="Mode == 'inbound'">
             <div class="form-group">
+                <label>Truck: </label>
+                <select ng-options="item.Name for item in Trucks" ng-model="Ticket.Truck">
+                    <option value="" disabled>Select Truck</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>Commodity: </label>
                 <select ng-options="item.Name for item in Commodities" ng-model="Ticket.Commodity">
                     <option value="" disabled>Select Commodity</option>
@@ -67,7 +73,7 @@
             </div>
             <div class="form-group">
                 <label>Field: </label>
-                <select ng-options="item.Name for item in Fields" ng-model="Ticket.Field">
+                <select ng-options="item.Name for item in Fields| filter:Ticket.Farm.Name" ng-model="Ticket.Field">
                     <option value="" disabled>Select Field</option>
                 </select>
             </div>
@@ -80,16 +86,16 @@
                 
         <div id="ConfirmInbound" ng-show="Mode == 'confirminbound'">
             <div class="form-group">
-                <label>Truck ID:</label><label>{{Ticket.TruckID}}</label>
+                <label>Truck ID:</label><label>{{Ticket.Truck.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Commodity:</label><label>{{Ticket.Commodity}}</label>
+                <label>Commodity:</label><label>{{Ticket.Commodity.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Field:</label><label>{{Ticket.Field}}</label>
+                <label>Field:</label><label>{{Ticket.Field.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Farm:</label><label>{{Ticket.Farm}}</label>
+                <label>Farm:</label><label>{{Ticket.Farm.Name}}</label>
             </div>
             <div class="form-group">
                 <label>In Weight:</label><label>{{Ticket.InWeight}}</label>
@@ -101,16 +107,16 @@
                 
         <div id="ConfirmOutbound" ng-show="Mode == 'confirmoutbound'">
             <div class="form-group">
-                <label>Truck ID:</label><label>{{Ticket.TruckID}}</label>
+                <label>Truck ID:</label><label>{{Ticket.Truck.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Commodity:</label><label>{{Ticket.Commodity}}</label>
+                <label>Commodity:</label><label>{{Ticket.Commodity.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Field:</label><label>{{Ticket.Field}}</label>
+                <label>Field:</label><label>{{Ticket.Field.Name}}</label>
             </div>
             <div class="form-group">
-                <label>Farm:</label><label>{{Ticket.Farm}}</label>
+                <label>Farm:</label><label>{{Ticket.Farm.Name}}</label>
             </div>
             <div class="form-group">
                 <label>Moisture:</label><label>{{Ticket.Moisture}}</label>
