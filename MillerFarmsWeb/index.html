@@ -53,26 +53,28 @@
         </div>
         
         <div id="NewTicket" ng-show="Mode == 'inbound'">
-            <form name="newTicketForm" novalidate>
             <div class="form-group">
-                <label>Truck ID: </label><input type="text" name="input" ng-model="Ticket.TruckID" required="">
-            </div>
-            <div class="form-group">
-                <label>Commodity: </label><input type="text" name="input" ng-model="Ticket.Commodity" required="">
-                <select ng-options="item.COMMODITY.Name for item in Commodities" ng-model="Ticket.Commodity">
+                <label>Commodity: </label>
+                <select ng-options="item.Name for item in Commodities" ng-model="Ticket.Commodity">
                     <option value="" disabled>Select Commodity</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>Field:</label><input type="text" name="input" ng-model="Ticket.Field" required+"">
+                <label>Farm: </label>
+                <select ng-options="item.Name for item in Farms" ng-model="Ticket.Farm">
+                    <option value="" disabled>Select Farm</option>
+                </select>
             </div>
             <div class="form-group">
-                <label>Farm:</label><input type="text" name="input" ng-model="Ticket.Farm" required="">
+                <label>Field: </label>
+                <select ng-options="item.Name for item in Fields" ng-model="Ticket.Field">
+                    <option value="" disabled>Select Field</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn-primary" value="Continue" name="InboundSubmit" ng-click= "inboundClick()" ng-disabled = "newTicketForm.$invalid">
             </div>  
-            </form>     
+            
         </div>
                 
                 
