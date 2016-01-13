@@ -1,0 +1,13 @@
+body{
+    padding: 20px;
+}
+
+.form-group label{
+    text-align: right;
+    margin-right: 20px;
+    width: 100px;
+}
+
+.form-group span{
+    
+}

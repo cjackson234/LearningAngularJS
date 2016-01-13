@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="FarmApp">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>GETTING STARTED WITH BRACKETS</title>
+        <meta name="description" content="An interactive getting started guide for Brackets.">
+        <link rel="stylesheet" href="Css/main.css"/> 
+        <link rel="stylesheet" href="Css/Bootstrap.css">
+        <script src="Scripts/angular.js"></script>
+        <script src="Scripts/jquery-1.9.1.js"></script>
+        <script src="Scripts/bootstrap.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body ng-controller="DataController as Data" ng-init="init()">
+        
+        <div id="Home" ng-show= "Mode == 'home' || Mode == 'outbound'">          
+            <div class="form-group" >
+                <select ng-options="ticket.TruckID for ticket in OpenTickets" ng-model="selectedOpenTicket"
+                    ng-change="LoadTicket()">
+                    <option value="" disabled>Select Open Ticket</option>
+                </select>
+            </div>         
+            <div class="form-group" >        
+                <input type="button" class="btn-primary" value="New Ticket" name="NewTicket" ng-click="newTicketClick()">
+            </div>          
+        </div>
+
+        <div id="Outbound" ng-show="Mode == 'outbound'">
+            <hr>
+            <div class="form-group">
+                <label>Truck ID:</label><label>{{Ticket.TruckID}}</label>
+            </div>
+            <div class="form-group">
+                <label>Commodity:</label><label>{{Ticket.Commodity}}</label>
+            </div>
+            <div class="form-group">
+                <label>Field:</label><label>{{Ticket.Field}}</label>
+            </div>
+            <div class="form-group">
+                <label>Farm:</label><label>{{Ticket.Farm}}</label>
+            </div>
+            <div class="form-group">
+                <label>Moisture:</label><input type="text" name="input" ng-model="Ticket.Moisture">
+            </div>
+            <div class="form-group">l
+                <label>TestWeight:</label><input type="text" name="input" ng-model="Ticket.TestWeight">
+            </div>
+            <div class="form-group">
+                <input type="button" class="btn-primary" value="Continue" name="OutboundSubmit" ng-click= "outboundClick()">
+            </div>         
+        </div>
+        
+        <div id="NewTicket" ng-show="Mode == 'inbound'">
+            <form name="newTicketForm" novalidate>
+            <div class="form-group">
+                <label>Truck ID: </label><input type="text" name="input" ng-model="Ticket.TruckID" required="">
+            </div>
+            <div class="form-group">
+                <label>Commodity: </label><input type="text" name="input" ng-model="Ticket.Commodity" required="">
+                <select ng-options="item.COMMODITY.Name for item in Commodities" ng-model="Ticket.Commodity">
+                    <option value="" disabled>Select Commodity</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Field:</label><input type="text" name="input" ng-model="Ticket.Field" required+"">
+            </div>
+            <div class="form-group">
+                <label>Farm:</label><input type="text" name="input" ng-model="Ticket.Farm" required="">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn-primary" value="Continue" name="InboundSubmit" ng-click= "inboundClick()" ng-disabled = "newTicketForm.$invalid">
+            </div>  
+            </form>     
+        </div>
+                
+                
+        <div id="ConfirmInbound" ng-show="Mode == 'confirminbound'">
+            <div class="form-group">
+                <label>Truck ID:</label><label>{{Ticket.TruckID}}</label>
+            </div>
+            <div class="form-group">
+                <label>Commodity:</label><label>{{Ticket.Commodity}}</label>
+            </div>
+            <div class="form-group">
+                <label>Field:</label><label>{{Ticket.Field}}</label>
+            </div>
+            <div class="form-group">
+                <label>Farm:</label><label>{{Ticket.Farm}}</label>
+            </div>
+            <div class="form-group">
+                <label>In Weight:</label><label>{{Ticket.InWeight}}</label>
+            </div>
+            <div class="form-group">
+                <input type="button" class="btn-primary" value="SaveInbound" name="SaveInbound" ng-click= "saveInboundClick()">
+            </div>                     
+        </div>
+                
+        <div id="ConfirmOutbound" ng-show="Mode == 'confirmoutbound'">
+            <div class="form-group">
+                <label>Truck ID:</label><label>{{Ticket.TruckID}}</label>
+            </div>
+            <div class="form-group">
+                <label>Commodity:</label><label>{{Ticket.Commodity}}</label>
+            </div>
+            <div class="form-group">
+                <label>Field:</label><label>{{Ticket.Field}}</label>
+            </div>
+            <div class="form-group">
+                <label>Farm:</label><label>{{Ticket.Farm}}</label>
+            </div>
+            <div class="form-group">
+                <label>Moisture:</label><label>{{Ticket.Moisture}}</label>
+            </div>
+            <div class="form-group">
+                <label>TestWeight:</label><label>{{Ticket.TestWeight}}</label>  
+            </div>
+            <div class="form-group">
+                <label>Gross:</label><label>{{Ticket.Gross}}</label>
+            </div>
+            <div class="form-group">
+                <label>Tare:</label><label>{{Ticket.Tare}}</label>
+            </div>
+            <div class="form-group">
+                <label>Net:</label><label>{{Ticket.Net}}</label>
+            </div>
+            <div class="form-group">
+                <input type="button" class="btn-primary" value="SaveOutbound" name="SaveOutbound" ng-click= "saveOutboundClick()">
+            </div>
+        </div>     
+      
+        <div id="ThankPage" ng-show="Mode == 'thanks'">
+            <h3>Thanks For Testing Me</h3>
+            <input type="button" class="btn-primary" value="Continue" name="inputSubmit" ng-click= "thanksClick()">
+        </div>
+        
+    </body>
+</html>
